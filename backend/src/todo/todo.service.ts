@@ -13,7 +13,20 @@ export class TodoService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} todo`;
+    return {
+      id,
+      title: 'test',
+      description: 'test-description',
+      dueDate: new Date(),
+      priority: 0,
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      user: {
+        uid: 'test',
+        name: 'test',
+      },
+    };
   }
 
   update(id: number, updateTodoInput: UpdateTodoInput) {

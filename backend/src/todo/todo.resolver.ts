@@ -1,9 +1,12 @@
+import { FirebaseAuthGuard } from './../auth/guard/firebase-auth.guard';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TodoService } from './todo.service';
 import { Todo } from './entities/todo.entity';
 import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
+import { UseGuards } from '@nestjs/common';
 
+@UseGuards(FirebaseAuthGuard)
 @Resolver(() => Todo)
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
