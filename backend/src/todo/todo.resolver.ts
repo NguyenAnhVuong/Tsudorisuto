@@ -1,3 +1,4 @@
+import { CurrentUser } from './../auth/decorator/user.decorator';
 import { FirebaseAuthGuard } from './../auth/guard/firebase-auth.guard';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TodoService } from './todo.service';
@@ -12,13 +13,16 @@ export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
   @Mutation(() => Todo)
-  createTodo(@Args('createTodoInput') createTodoInput: CreateTodoInput) {
-    return this.todoService.create(createTodoInput);
+  createTodo(
+    @Args('createTodoInput') createTodoInput: CreateTodoInput,
+    @CurrentUser() user: any,
+  ) {
+    return this.todoService.create(createTodoInput, user.uid);
   }
 
-  @Query(() => [Todo], { name: 'todo' })
-  findAll() {
-    return this.todoService.findAll();
+  @Query(() => [Todo], { name: 'searchTodo' })
+  findAll(@Args('keyWord') keyWord: string, @CurrentUser() user: any) {
+    return this.todoService.findAll(keyWord, user.uid);
   }
 
   @Query(() => Todo, { name: 'todo' })

@@ -5,4 +5,19 @@ import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 export class UpdateTodoInput extends PartialType(CreateTodoInput) {
   @Field(() => Int)
   id: number;
+
+  @Field(() => String)
+  title: string;
+
+  @Field(() => String)
+  description: string;
+
+  @Field(() => Date)
+  dueDate: Date;
+
+  @Field(() => Boolean)
+  completed: boolean;
+
+  @Field(() => Int)
+  priority: number;
 }
