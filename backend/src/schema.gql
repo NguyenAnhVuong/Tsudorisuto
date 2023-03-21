@@ -3,8 +3,10 @@
 # ------------------------------------------------------
 
 input CreateTodoInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  description: String!
+  dueDate: DateTime!
+  priority: Int!
+  title: String!
 }
 
 input CreateUserInput {
@@ -27,6 +29,7 @@ type Mutation {
 }
 
 type Query {
+  searchTodo(keyWord: String!): [Todo!]!
   todo(id: Int!): Todo!
   user(id: Int!): User!
 }
@@ -44,9 +47,12 @@ type Todo {
 }
 
 input UpdateTodoInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  completed: Boolean!
+  description: String!
+  dueDate: DateTime!
   id: Int!
+  priority: Int!
+  title: String!
 }
 
 input UpdateUserInput {
