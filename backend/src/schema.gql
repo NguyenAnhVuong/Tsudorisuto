@@ -2,28 +2,73 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTodoInput {
+  description: String!
+  dueDate: String!
+  piority: Int!
+  title: String!
+}
+
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  uid: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Delete {
+  count: Int!
 }
 
 type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
   createUser(createUserInput: CreateUserInput!): User!
+  removeTodos(ids: [Int!]!): Delete!
   removeUser(id: Int!): User!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
+  searchTodo(keyWord: String!): [Todo!]!
+  todo(id: Int!): Todo!
   user(id: Int!): User!
 }
 
-input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+type Todo {
+  completed: Boolean!
+  createdAt: DateTime!
+  description: String!
+  dueDate: String!
   id: Int!
+  piority: Int!
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+}
+
+input UpdateTodoInput {
+  completed: Boolean!
+  description: String!
+  dueDate: String!
+  id: Int!
+  piority: Int!
+  title: String!
+}
+
+input UpdateUserInput {
+  id: Int!
+  name: String
+  uid: String
 }
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  createdAt: DateTime!
+  name: String!
+  toDo: [Todo!]
+  uid: String!
+  updatedAt: DateTime!
 }

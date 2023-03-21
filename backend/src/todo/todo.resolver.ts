@@ -1,21 +1,29 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { TodoService } from './todo.service';
-import { Todo } from './entities/todo.entity';
+import { UseGuards } from '@nestjs/common';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CurrentUser } from './../auth/decorator/user.decorator';
+import { FirebaseAuthGuard } from './../auth/guard/firebase-auth.guard';
 import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
+import { Delete } from './entities/delete.entity';
+import { Todo } from './entities/todo.entity';
+import { TodoService } from './todo.service';
 
+@UseGuards(FirebaseAuthGuard)
 @Resolver(() => Todo)
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
   @Mutation(() => Todo)
-  createTodo(@Args('createTodoInput') createTodoInput: CreateTodoInput) {
-    return this.todoService.create(createTodoInput);
+  createTodo(
+    @Args('createTodoInput') createTodoInput: CreateTodoInput,
+    @CurrentUser() user: any,
+  ) {
+    return this.todoService.create(createTodoInput, user.uid);
   }
 
-  @Query(() => [Todo], { name: 'todo' })
-  findAll() {
-    return this.todoService.findAll();
+  @Query(() => [Todo], { name: 'searchTodo' })
+  findAll(@Args('keyWord') keyWord: string, @CurrentUser() user: any) {
+    return this.todoService.findAll(keyWord, user.uid);
   }
 
   @Query(() => Todo, { name: 'todo' })
@@ -28,8 +36,8 @@ export class TodoResolver {
     return this.todoService.update(updateTodoInput.id, updateTodoInput);
   }
 
-  @Mutation(() => Todo)
-  removeTodo(@Args('id', { type: () => Int }) id: number) {
-    return this.todoService.remove(id);
+  @Mutation(() => Delete)
+  removeTodos(@Args('ids', { type: () => [Int] }) ids: number[]) {
+    return this.todoService.remove(ids);
   }
 }
