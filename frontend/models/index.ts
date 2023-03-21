@@ -5,3 +5,15 @@ export interface User {
   photoURL?: string;
   auth?: any;
 }
+
+export interface Task {
+  id?: number;
+  title?: string;
+  description?: string;
+  dueDate?: string;
+  piority?: number;
+  completed?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  user?: User;
+}

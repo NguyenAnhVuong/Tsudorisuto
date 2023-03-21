@@ -76,11 +76,14 @@ export class TodoService {
     });
   }
 
-  async remove(id: number) {
-    return await this.prisma.todo.delete({
+  async remove(ids: number[]) {
+    const data = await this.prisma.todo.deleteMany({
       where: {
-        id,
+        id: {
+          in: ids,
+        },
       },
     });
+    return { count: data.count };
   }
 }

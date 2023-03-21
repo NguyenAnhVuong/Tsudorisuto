@@ -20,8 +20,8 @@ model User {
 model Todo {
   title       String
   description String
-  dueDate     DateTime
-  priority    Int
+  dueDate     String
+  piority     Int
   completed   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

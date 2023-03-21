@@ -12,12 +12,12 @@ export class UpdateTodoInput extends PartialType(CreateTodoInput) {
   @Field(() => String)
   description: string;
 
-  @Field(() => Date)
-  dueDate: Date;
+  @Field(() => String)
+  dueDate: string;
 
   @Field(() => Boolean)
   completed: boolean;
 
   @Field(() => Int)
-  priority: number;
+  piority: number;
 }

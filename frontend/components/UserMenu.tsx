@@ -1,7 +1,7 @@
-import { useAppSelector } from '@/app/hook';
-import { RootState } from '@/app/store';
-import { Avatar, Dropdown, MenuProps } from 'antd';
-import { useState } from 'react';
+import { useAppSelector } from "@/app/hook";
+import { RootState } from "@/app/store";
+import { Avatar, Dropdown, MenuProps } from "antd";
+import { useState } from "react";
 
 const UserMenu = () => {
   const user = useAppSelector((state: RootState) => state.auth.user);
@@ -19,14 +19,14 @@ const UserMenu = () => {
     user.auth.signOut();
   };
 
-  const items: MenuProps['items'] = [
+  const items: MenuProps["items"] = [
     {
       label: (
-        <div className="" onClick={handleLogout}>
+        <div className="text-base font-medium" onClick={handleLogout}>
           Logout
         </div>
       ),
-      key: '0',
+      key: "0",
     },
   ];
 
@@ -36,14 +36,14 @@ const UserMenu = () => {
       menu={{
         items,
       }}
-      trigger={['click']}
+      trigger={["click"]}
       placement="bottomRight"
       open={open}
       onOpenChange={handleOpenChange}
     >
       <div>
-        <span className="mr-1 font-medium text-base">{user.displayName}</span>
-        <Avatar src={user.photoURL} />
+        <span className="mr-1 font-semibold text-lg">{user.displayName}</span>
+        <Avatar src={user.photoURL} size={32} />
       </div>
     </Dropdown>
   );

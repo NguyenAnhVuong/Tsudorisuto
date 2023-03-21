@@ -1,11 +1,12 @@
+import { UseGuards } from '@nestjs/common';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CurrentUser } from './../auth/decorator/user.decorator';
 import { FirebaseAuthGuard } from './../auth/guard/firebase-auth.guard';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { TodoService } from './todo.service';
-import { Todo } from './entities/todo.entity';
 import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
-import { UseGuards } from '@nestjs/common';
+import { Delete } from './entities/delete.entity';
+import { Todo } from './entities/todo.entity';
+import { TodoService } from './todo.service';
 
 @UseGuards(FirebaseAuthGuard)
 @Resolver(() => Todo)
@@ -35,8 +36,8 @@ export class TodoResolver {
     return this.todoService.update(updateTodoInput.id, updateTodoInput);
   }
 
-  @Mutation(() => Todo)
-  removeTodo(@Args('id', { type: () => Int }) id: number) {
-    return this.todoService.remove(id);
+  @Mutation(() => Delete)
+  removeTodos(@Args('ids', { type: () => [Int] }) ids: number[]) {
+    return this.todoService.remove(ids);
   }
 }

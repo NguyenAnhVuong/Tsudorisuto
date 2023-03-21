@@ -10,6 +10,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { Quicksand } from "next/font/google";
+import { ConfigProvider } from "antd";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
@@ -32,12 +34,27 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const quicksand = Quicksand({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
         <AuthContainer>
-          <Component {...pageProps} />
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "#5cb85c",
+              },
+            }}
+          >
+            <main className={quicksand.className}>
+              <Component {...pageProps} />
+            </main>
+          </ConfigProvider>
         </AuthContainer>
       </Provider>
     </ApolloProvider>
