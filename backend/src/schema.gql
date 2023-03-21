@@ -4,8 +4,8 @@
 
 input CreateTodoInput {
   description: String!
-  dueDate: DateTime!
-  priority: Int!
+  dueDate: String!
+  piority: Int!
   title: String!
 }
 
@@ -19,10 +19,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Delete {
+  count: Int!
+}
+
 type Mutation {
   createTodo(createTodoInput: CreateTodoInput!): Todo!
   createUser(createUserInput: CreateUserInput!): User!
-  removeTodo(id: Int!): Todo!
+  removeTodos(ids: [Int!]!): Delete!
   removeUser(id: Int!): User!
   updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
   updateUser(updateUserInput: UpdateUserInput!): User!
@@ -38,9 +42,9 @@ type Todo {
   completed: Boolean!
   createdAt: DateTime!
   description: String!
-  dueDate: DateTime!
-  id: String!
-  priority: Int!
+  dueDate: String!
+  id: Int!
+  piority: Int!
   title: String!
   updatedAt: DateTime!
   user: User!
@@ -49,9 +53,9 @@ type Todo {
 input UpdateTodoInput {
   completed: Boolean!
   description: String!
-  dueDate: DateTime!
+  dueDate: String!
   id: Int!
-  priority: Int!
+  piority: Int!
   title: String!
 }
 

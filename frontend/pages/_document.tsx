@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>To do list</title>
+        <title>Tsudorisuto</title>
         <link rel="shortcut icon" href="/to_do_list.png" />
       </Head>
       <body>

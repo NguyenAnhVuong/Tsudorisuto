@@ -8,9 +8,9 @@ export class CreateTodoInput {
   @Field(() => String)
   description: string;
 
-  @Field(() => Date)
-  dueDate: Date;
+  @Field(() => String)
+  dueDate: string;
 
   @Field(() => Int)
-  priority: number;
+  piority: number;
 }

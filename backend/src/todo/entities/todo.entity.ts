@@ -3,8 +3,8 @@ import { User } from 'src/user/entities/user.entity';
 
 @ObjectType()
 export class Todo {
-  @Field(() => String)
-  id: string;
+  @Field(() => Int)
+  id: number;
 
   @Field(() => String)
   title: string;
@@ -12,11 +12,11 @@ export class Todo {
   @Field(() => String)
   description: string;
 
-  @Field(() => Date)
-  dueDate: Date;
+  @Field(() => String)
+  dueDate: string;
 
   @Field(() => Int)
-  priority: number;
+  piority: number;
 
   @Field(() => Boolean)
   completed: boolean;
