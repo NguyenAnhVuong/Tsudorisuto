@@ -50,9 +50,7 @@ const Task = ({ task, keyWord }: Props) => {
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo: any) => {};
 
   const pushMessage = (type: NoticeType, content: string) => {
     messageApi.open({

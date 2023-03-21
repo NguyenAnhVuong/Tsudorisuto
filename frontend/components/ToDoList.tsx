@@ -12,8 +12,8 @@ const ToDoList = ({ keyWord }: Props) => {
   const { loading, error, data } = useQuery(getTasks, {
     variables: { keyWord },
   });
-  if (loading) return <Loading />;
-  console.log("length: ", data.length);
+  if (loading) return <Loading height={"100%"} />;
+
   if (!data.searchTodo.length)
     return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   return (

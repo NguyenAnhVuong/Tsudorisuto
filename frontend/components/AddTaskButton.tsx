@@ -61,9 +61,7 @@ const AddTaskButton = ({ keyWord }: Props) => {
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo: any) => {};
 
   return (
     <div className="lg:hidden">
