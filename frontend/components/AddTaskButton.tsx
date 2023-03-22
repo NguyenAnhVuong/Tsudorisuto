@@ -1,7 +1,7 @@
 import { addTaskMutation } from "@/apollo-client/mutations";
 import { getTasks } from "@/apollo-client/queries";
 import { useMutation } from "@apollo/client";
-import { Button, Form, message, Modal } from "antd";
+import { Button, Form, message, Modal, Tooltip } from "antd";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import TaskDetail from "./TaskDetail";
@@ -66,13 +66,15 @@ const AddTaskButton = ({ keyWord }: Props) => {
   return (
     <div className="lg:hidden">
       {contextHolder}
-      <Button
-        className="bg-[#5cb85c] justify-center flex w-9 h-9 md:w-10 md:h-10 p-0 items-center fixed right-4 bottom-[60px] md:bottom-16 z-50"
-        type="primary"
-        onClick={showModal}
-      >
-        <FiPlus size={28} />
-      </Button>
+      <Tooltip placement="top" title="Add task">
+        <Button
+          className="bg-[#5cb85c] justify-center flex w-9 h-9 md:w-10 md:h-10 p-0 items-center md:bottom-16 z-50"
+          type="primary"
+          onClick={showModal}
+        >
+          <FiPlus size={28} />
+        </Button>
+      </Tooltip>
       <Modal
         title="New Task"
         okText="Add"
@@ -81,6 +83,7 @@ const AddTaskButton = ({ keyWord }: Props) => {
         onCancel={handleCancel}
       >
         <TaskDetail
+          useDarkmode={false}
           form={form}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}

@@ -51,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
               },
             }}
           >
-            <main className={quicksand.className}>
+            <main className={quicksand.className + " dark:bg-dark h-full"}>
               <Component {...pageProps} />
             </main>
           </ConfigProvider>

@@ -1,5 +1,5 @@
 import { Task } from "@/models";
-import { Checkbox, Collapse, Form, message } from "antd";
+import { Checkbox, Collapse, Form, message, Popconfirm, Tooltip } from "antd";
 import React from "react";
 import TaskDetail from "./TaskDetail";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -73,6 +73,12 @@ const Task = ({ task, keyWord }: Props) => {
     }
   };
 
+  const confirm = async () => {
+    await handleDeleteTask();
+  };
+
+  const cancel = () => {};
+
   const handleCheckTask = (checked: boolean) => {
     if (checked) {
       dispatch(taskActions.pushTask(task));
@@ -97,11 +103,21 @@ const Task = ({ task, keyWord }: Props) => {
     <div className="relative my-2">
       {contextHolder}
       <div className="flex justify-between items-center gap-2 absolute right-3 top-3 z-10">
-        <AiOutlineDelete
-          className="hover:text-primary cursor-pointer"
-          size={20}
-          onClick={handleDeleteTask}
-        />
+        <Popconfirm
+          title="Delete the task"
+          description="Are you sure to delete this task?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Tooltip placement="top" title="delete">
+            <AiOutlineDelete
+              className="hover:text-primary cursor-pointer"
+              size={20}
+            />
+          </Tooltip>
+        </Popconfirm>
         <Checkbox
           onChange={(e) => handleCheckTask(e.target.checked)}
         ></Checkbox>
