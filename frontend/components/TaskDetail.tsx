@@ -4,6 +4,7 @@ import moment from "moment";
 import React from "react";
 
 type Props = {
+  useDarkmode?: boolean;
   form: any;
   onFinish: (value: any) => void;
   onFinishFailed: (value: any) => void;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const TaskDetail = ({
+  useDarkmode = true,
   form,
   onFinish,
   onFinishFailed,
@@ -24,6 +26,7 @@ const TaskDetail = ({
   }
   return (
     <Form
+      className={"p-4 rounded-b-lg " + (useDarkmode && "dark:bg-dark")}
       layout="vertical"
       initialValues={{ piority: 1, ...preValue, dueDate }}
       onFinish={onFinish}
@@ -31,19 +34,43 @@ const TaskDetail = ({
       form={form}
     >
       <Form.Item
-        label="Task"
+        label={
+          <span
+            className={"font-semibold " + (useDarkmode && "dark:text-white")}
+          >
+            Task
+          </span>
+        }
         name="title"
         rules={[{ required: true, message: "Please input task name!" }]}
       >
         <Input placeholder="Add new task..." />
       </Form.Item>
 
-      <Form.Item label="Description" name="description">
+      <Form.Item
+        label={
+          <span
+            className={"font-semibold " + (useDarkmode && "dark:text-white")}
+          >
+            Description
+          </span>
+        }
+        name="description"
+      >
         <Input.TextArea />
       </Form.Item>
 
       <div className="grid grid-cols-2 gap-4">
-        <Form.Item label="Due Date" name="dueDate">
+        <Form.Item
+          label={
+            <span
+              className={"font-semibold " + (useDarkmode && "dark:text-white")}
+            >
+              Due Date
+            </span>
+          }
+          name="dueDate"
+        >
           <DatePicker
             className="w-full"
             disabledDate={(current) => {
@@ -52,7 +79,16 @@ const TaskDetail = ({
             }}
           />
         </Form.Item>
-        <Form.Item label="Piority" name="piority">
+        <Form.Item
+          label={
+            <span
+              className={"font-semibold " + (useDarkmode && "dark:text-white")}
+            >
+              Piority
+            </span>
+          }
+          name="piority"
+        >
           <Select
             options={[
               { value: 0, label: "Low" },

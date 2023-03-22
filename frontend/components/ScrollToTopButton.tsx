@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import React from "react";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -11,13 +11,15 @@ const ScrollToTopButton = (props: Props) => {
     });
   };
   return (
-    <Button
-      className="bg-[#5cb85c] justify-center flex w-9 h-9 md:w-10 md:h-10 p-0 items-center fixed right-4 bottom-4 z-50"
-      type="primary"
-      onClick={gotoTop}
-    >
-      <IoIosArrowUp size={28} />
-    </Button>
+    <Tooltip placement="top" title="Scroll to top">
+      <Button
+        className="bg-[#5cb85c] justify-center flex w-9 h-9 md:w-10 md:h-10 p-0 items-center"
+        type="primary"
+        onClick={gotoTop}
+      >
+        <IoIosArrowUp size={28} />
+      </Button>
+    </Tooltip>
   );
 };
 

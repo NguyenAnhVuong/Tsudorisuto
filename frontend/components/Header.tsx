@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { MdOutlinePlaylistAddCheck } from "react-icons/md";
 import UserMenu from "./UserMenu";
 
 type Props = {};
@@ -10,16 +10,11 @@ const Header = (props: Props) => {
     });
   };
   return (
-    <div className="fixed top-0 left-0 right-0 z-20 shadow-md flex justify-center bg-white">
-      <div className="flex w-full lg:w-[1200px] items-center justify-between p-4 py-3">
+    <div className="fixed top-0 left-0 right-0 z-20 flex justify-center bg-white dark:bg-dark dark:text-white shadow-light">
+      <div className="flex w-full lg:w-[1200px] items-center justify-between p-4 py-2">
         <div className="flex items-center" onClick={gotoTop}>
-          <Image
-            src="/to_do_list.png"
-            alt="Landscape picture"
-            width={32}
-            height={32}
-          />
-          <h2 className="text-xl font-semibold">Tsudorisuto</h2>
+          <MdOutlinePlaylistAddCheck size={40} color="#5cb85c" />
+          <h2 className="text-xl font-semibold dark:text-white">Tsudorisuto</h2>
         </div>
         <div>
           <UserMenu />
