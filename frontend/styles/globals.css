@@ -8,3 +8,7 @@
   border: none;
   box-sizing: border-box;
 }
+
+.ant-collapse-content-box {
+  padding: 0 !important;
+}

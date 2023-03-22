@@ -15,7 +15,13 @@ const ToDoList = ({ keyWord }: Props) => {
   if (loading) return <Loading height={"100%"} />;
 
   if (!data.searchTodo.length)
-    return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
+    return (
+      <Empty
+        className="mt-56"
+        description={<span className="dark:text-white">No task</span>}
+        image={Empty.PRESENTED_IMAGE_SIMPLE}
+      />
+    );
   return (
     <div>
       {data &&
