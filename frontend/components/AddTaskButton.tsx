@@ -47,7 +47,7 @@ const AddTaskButton = ({ keyWord }: Props) => {
       await addTask({
         variables: {
           title: values.title,
-          description: values.description,
+          description: values.description || "",
           piority: values.piority,
           dueDate: values.dueDate,
         },

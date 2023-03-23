@@ -46,7 +46,7 @@ const Login = () => {
   }
 
   return (
-    <div className="flex flex-col items-center mt-20">
+    <div className="flex flex-col items-center pt-20 h-screen dark:text-white">
       <span className="text-3xl mb-5">Welcome</span>
       <Button
         className="bg-[#4285f4] h-[42px] flex w-48 items-center p-[1px] border-none rounded-sm"
