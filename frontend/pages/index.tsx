@@ -53,6 +53,7 @@ export default function Home() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
+    setTheme(localStorage.theme || "light");
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
@@ -65,7 +66,7 @@ export default function Home() {
   }, [theme]);
 
   return (
-    <div className="pb-24">
+    <div className="pb-24 min-h-screen">
       {contextHolder}
       <Header />
       <div className="m-4 pt-16 xl:flex xl:justify-center">
