@@ -12,6 +12,7 @@ import { getTasks } from "@/apollo-client/queries";
 import { NoticeType } from "antd/es/message/interface";
 import { useAppDispatch } from "@/app/hook";
 import { taskActions } from "@/features/task";
+import dayjs from "dayjs";
 
 type Props = {
   task: Task;
@@ -88,6 +89,12 @@ const Task = ({ task, keyWord }: Props) => {
   };
 
   const getBackgroundColor = (piority?: number) => {
+    if (
+      task.dueDate &&
+      dayjs(task.dueDate, "YYYY-MM-DD") < dayjs(new Date(), "YYYY-MM-DD")
+    ) {
+      return "bg-red-600";
+    }
     switch (piority) {
       case 0:
         return "bg-green-200";

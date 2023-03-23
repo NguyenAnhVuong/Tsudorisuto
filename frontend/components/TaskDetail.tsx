@@ -1,5 +1,6 @@
 import { Task } from "@/models";
 import { Button, DatePicker, Form, Input, Select } from "antd";
+import dayjs from "dayjs";
 import moment from "moment";
 import React from "react";
 
@@ -20,7 +21,7 @@ const TaskDetail = ({
 }: Props) => {
   let dueDate;
   if (preValue.dueDate) {
-    dueDate = moment(preValue.dueDate, "YYYY-MM-DD");
+    dueDate = dayjs(preValue.dueDate, "YYYY-MM-DD");
   } else {
     dueDate = moment().endOf("day");
   }
