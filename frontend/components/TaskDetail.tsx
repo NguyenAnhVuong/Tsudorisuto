@@ -23,7 +23,7 @@ const TaskDetail = ({
   if (preValue.dueDate) {
     dueDate = dayjs(preValue.dueDate, "YYYY-MM-DD");
   } else {
-    dueDate = moment().endOf("day");
+    dueDate = dayjs().endOf("day");
   }
   return (
     <Form
